@@ -1,4 +1,24 @@
-#include <data_structure.h>
+#include "data_structures.h"
+
+float triangle_point_distance(const Eigen::Vector3f point,
+  const Eigen::Vector3f v1, const Eigen::Vector3f v2,
+  const Eigen::Vector3f v3,
+  Eigen::Vector3f &closest_point)
+{
+  Vec3f x0(point.data());
+  Vec3f x1(v1.data());
+  Vec3f x2(v2.data());
+  Vec3f x3(v3.data());
+
+  Vec3f r(0);
+  float distance = point_triangle_distance(x0, x1, x2, x3, r);
+
+  for (int d = 0; d < 3; d++) {
+    closest_point(d) = r[d];
+  }
+
+  return distance;
+}
 
 /** \brief Sample points from the mesh
  * \param[in] mesh mesh to sample from

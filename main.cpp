@@ -166,8 +166,11 @@ int main(int argc, char** argv) {
       }
 
       PointCloud input_point_cloud;
+      printf("Sampling input mesh...");
       success = input_mesh.sample(N_points, input_point_cloud);
 
+
+      printf("Computing accuracy ...");
       if (success) {
         float accuracy = 0;
         success = input_point_cloud.compute_distance(reference_mesh, accuracy);
@@ -185,8 +188,11 @@ int main(int argc, char** argv) {
       }
 
       PointCloud reference_point_cloud;
+      printf("Sampling reference mesh...");
       reference_mesh.sample(N_points, reference_point_cloud);
 
+
+      printf("Computing completeness ...");
       if (success) {
         float completeness = 0;
         success = reference_point_cloud.compute_distance(input_mesh, completeness);
